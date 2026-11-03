@@ -6,9 +6,10 @@ standard iCalendar/iTIP invitations through Thunderbird's own scheduling engine,
 so attendees can answer from Outlook, Microsoft 365, Google Calendar or any
 other calendar client. Attendees do not need the extension or a Zoom account.
 
-> Status: **alpha**. Developed against Thunderbird 157 (release). Interoperability with
-> classic Outlook, new Outlook and Outlook on the web still has to be validated
-> with real invitations.
+> Status: **beta**. Tested end to end on Thunderbird 157 (release): Zoom connection,
+> meeting creation, invitations, replies, updates, recurrence and cancellation.
+> Interoperability with every Outlook flavor (classic, new, web) should still be
+> checked in your own environment.
 
 ## Features
 
