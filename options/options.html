@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title data-i18n="optionsTitle"></title>
+    <link rel="stylesheet" href="../ui/manager.css" />
+    <style>
+      main { max-width: 760px; margin: 24px auto; padding: 0 16px; display: grid; gap: 16px; }
+      section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; display: grid; gap: 10px; }
+      ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+      code { font-family: ui-monospace, Menlo, monospace; background: var(--pending-bg); padding: 1px 5px; border-radius: 4px; word-break: break-all; }
+    </style>
+    <script type="module" src="options.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1 data-i18n="optionsTitle"></h1>
+      <div id="banner" class="banner" hidden></div>
+
+      <section>
+        <h2 data-i18n="optionsStepsTitle"></h2>
+        <ol>
+          <li data-i18n="optionsStep1"></li>
+          <li data-i18n="optionsStep2"></li>
+          <li><span data-i18n="optionsStep3"></span><br /><code id="redirectUrl"></code> <button id="btnCopyRedirect" class="link" data-i18n="actionCopy"></button></li>
+          <li data-i18n="optionsStep4"></li>
+          <li data-i18n="optionsStep5"></li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 data-i18n="optionsCredentials"></h2>
+        <label class="field"><span>Client ID</span><input id="clientId" /></label>
+        <label class="field"><span data-i18n="optionsSecretLabel"></span><input id="clientSecret" type="password" /></label>
+        <p class="muted small" data-i18n="optionsSecretHelp"></p>
+        <div class="row gap end"><button id="btnSave" data-i18n="actionSave"></button></div>
+      </section>
+
+      <section>
+        <h2 data-i18n="optionsAccount"></h2>
+        <div class="zoom-status" id="status"></div>
+        <div class="row gap end">
+          <button id="btnDisconnect" data-i18n="actionDisconnect"></button>
+          <button id="btnConnect" class="primary" data-i18n="actionConnect"></button>
+        </div>
+      </section>
+
+      <section>
+        <h2 data-i18n="optionsCalendars"></h2>
+        <ul id="calendars" class="attendees"></ul>
+        <p class="muted small" data-i18n="optionsCalendarsHelp"></p>
+      </section>
+    </main>
+  </body>
+</html>

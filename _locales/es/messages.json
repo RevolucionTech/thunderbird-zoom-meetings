@@ -1,0 +1,401 @@
+{
+  "extensionName": {
+    "message": "Reuniones Zoom para Thunderbird"
+  },
+  "extensionDescription": {
+    "message": "Organiza reuniones Zoom desde el calendario de Thunderbird con invitaciones compatibles con Outlook y seguimiento de asistentes."
+  },
+  "browserActionTitle": {
+    "message": "Reuniones Zoom"
+  },
+  "browserActionLabel": {
+    "message": "Zoom"
+  },
+  "messageActionTitle": {
+    "message": "Gestionar la reunión Zoom de este correo o crear una con sus participantes"
+  },
+  "messageActionLabel": {
+    "message": "Reunión Zoom"
+  },
+  "managerTitle": {
+    "message": "Reuniones Zoom"
+  },
+  "actionNewMeeting": {
+    "message": "Nueva reunión"
+  },
+  "actionAddZoomExisting": {
+    "message": "Añadir Zoom a un evento"
+  },
+  "actionAddZoom": {
+    "message": "Añadir Zoom y enviar actualización"
+  },
+  "actionOpenCalendar": {
+    "message": "Abrir calendario"
+  },
+  "actionRefresh": {
+    "message": "Actualizar"
+  },
+  "actionSettings": {
+    "message": "Ajustes"
+  },
+  "actionStart": {
+    "message": "Iniciar como anfitrión"
+  },
+  "actionJoin": {
+    "message": "Unirse"
+  },
+  "actionCopyInvite": {
+    "message": "Copiar invitación"
+  },
+  "actionCopy": {
+    "message": "Copiar"
+  },
+  "actionEdit": {
+    "message": "Modificar"
+  },
+  "actionCancelMeeting": {
+    "message": "Cancelar reunión"
+  },
+  "actionConfirmCancel": {
+    "message": "Sí, cancelarla"
+  },
+  "actionBack": {
+    "message": "Volver"
+  },
+  "actionSave": {
+    "message": "Guardar"
+  },
+  "actionRemove": {
+    "message": "Quitar"
+  },
+  "actionConnect": {
+    "message": "Conectar Zoom"
+  },
+  "actionDisconnect": {
+    "message": "Desconectar"
+  },
+  "filterUpcoming": {
+    "message": "Próximas"
+  },
+  "filterPast": {
+    "message": "Pasadas"
+  },
+  "emptyList": {
+    "message": "Todavía no hay reuniones Zoom aquí."
+  },
+  "selectMeeting": {
+    "message": "Selecciona una reunión o crea una nueva."
+  },
+  "untitled": {
+    "message": "(sin título)"
+  },
+  "recurring": {
+    "message": "Periódica"
+  },
+  "zoomLink": {
+    "message": "Enlace de Zoom"
+  },
+  "attendees": {
+    "message": "Participantes"
+  },
+  "noAttendees": {
+    "message": "No hay participantes invitados."
+  },
+  "attendeeCount": {
+    "message": "$1 participante(s)"
+  },
+  "inCalendar": {
+    "message": "Calendario: $1"
+  },
+  "stateScheduled": {
+    "message": "Programada"
+  },
+  "statePast": {
+    "message": "Finalizada"
+  },
+  "statInvited": {
+    "message": "Invitados"
+  },
+  "statAccepted": {
+    "message": "Aceptadas"
+  },
+  "statTentative": {
+    "message": "Provisionales"
+  },
+  "statPending": {
+    "message": "Pendientes"
+  },
+  "statDeclined": {
+    "message": "Rechazadas"
+  },
+  "partstat_ACCEPTED": {
+    "message": "Aceptada"
+  },
+  "partstat_DECLINED": {
+    "message": "Rechazada"
+  },
+  "partstat_TENTATIVE": {
+    "message": "Provisional"
+  },
+  "partstat_NEEDS_ACTION": {
+    "message": "Pendiente"
+  },
+  "partstat_DELEGATED": {
+    "message": "Delegada"
+  },
+  "confirmCancel": {
+    "message": "Se borrará la reunión de Zoom y el evento de tu calendario."
+  },
+  "notifyAttendees": {
+    "message": "Enviar la cancelación a los participantes"
+  },
+  "formNewTitle": {
+    "message": "Nueva reunión Zoom"
+  },
+  "formEditTitle": {
+    "message": "Modificar reunión"
+  },
+  "fieldTitle": {
+    "message": "Título"
+  },
+  "fieldDate": {
+    "message": "Fecha"
+  },
+  "fieldTime": {
+    "message": "Hora de inicio"
+  },
+  "fieldDuration": {
+    "message": "Duración"
+  },
+  "fieldTimezone": {
+    "message": "Zona horaria"
+  },
+  "fieldCalendar": {
+    "message": "Calendario"
+  },
+  "fieldAttendees": {
+    "message": "Participantes"
+  },
+  "attendeePlaceholder": {
+    "message": "Escribe un nombre o correo de tu libreta de direcciones"
+  },
+  "fieldRepeat": {
+    "message": "Repetición"
+  },
+  "repeatNone": {
+    "message": "No se repite"
+  },
+  "repeatDaily": {
+    "message": "Diaria"
+  },
+  "repeatWeekly": {
+    "message": "Semanal"
+  },
+  "repeatMonthly": {
+    "message": "Mensual (mismo día)"
+  },
+  "repeatEvery": {
+    "message": "Cada"
+  },
+  "repeatEndAfter": {
+    "message": "Termina tras"
+  },
+  "repeatOccurrences": {
+    "message": "repeticiones"
+  },
+  "repeatEndUntil": {
+    "message": "o hasta el"
+  },
+  "unit_DAILY": {
+    "message": "día(s)"
+  },
+  "unit_WEEKLY": {
+    "message": "semana(s)"
+  },
+  "unit_MONTHLY": {
+    "message": "mes(es)"
+  },
+  "day_MO": {
+    "message": "lun"
+  },
+  "day_TU": {
+    "message": "mar"
+  },
+  "day_WE": {
+    "message": "mié"
+  },
+  "day_TH": {
+    "message": "jue"
+  },
+  "day_FR": {
+    "message": "vie"
+  },
+  "day_SA": {
+    "message": "sáb"
+  },
+  "day_SU": {
+    "message": "dom"
+  },
+  "recurrenceEvery": {
+    "message": "Cada $1 $2"
+  },
+  "recurrenceCount": {
+    "message": "$1 veces"
+  },
+  "recurrenceUntil": {
+    "message": "hasta el $1"
+  },
+  "fieldNotes": {
+    "message": "Notas para los participantes"
+  },
+  "fieldZoomOptions": {
+    "message": "Opciones de Zoom"
+  },
+  "optWaitingRoom": {
+    "message": "Sala de espera"
+  },
+  "optJoinBeforeHost": {
+    "message": "Permitir entrar antes que el anfitrión"
+  },
+  "optMuteOnEntry": {
+    "message": "Silenciar a los participantes al entrar"
+  },
+  "sendInvitations": {
+    "message": "Enviar ahora las invitaciones a los participantes"
+  },
+  "sendUpdates": {
+    "message": "Enviar la actualización a los participantes"
+  },
+  "existingTitle": {
+    "message": "Añadir Zoom a un evento existente"
+  },
+  "existingHelp": {
+    "message": "Tus eventos de los próximos 90 días que organizas tú y aún no tienen reunión Zoom."
+  },
+  "existingEmpty": {
+    "message": "No hay eventos disponibles."
+  },
+  "loading": {
+    "message": "Cargando…"
+  },
+  "copied": {
+    "message": "Copiado al portapapeles."
+  },
+  "savedCreated": {
+    "message": "Reunión creada."
+  },
+  "savedUpdated": {
+    "message": "Reunión actualizada."
+  },
+  "savedCancelled": {
+    "message": "Reunión cancelada."
+  },
+  "savedZoomAdded": {
+    "message": "Zoom añadido al evento."
+  },
+  "zoomConnectedAs": {
+    "message": "Zoom conectado: $1"
+  },
+  "zoomNotConnected": {
+    "message": "Zoom sin conectar"
+  },
+  "calendarNoIdentity": {
+    "message": "sin identidad de correo, no puede enviar invitaciones"
+  },
+  "calendarReadOnly": {
+    "message": "solo lectura"
+  },
+  "errorTitleRequired": {
+    "message": "La reunión necesita un título."
+  },
+  "errorStartRequired": {
+    "message": "Elige fecha y hora de inicio."
+  },
+  "errorDuration": {
+    "message": "Elige una duración válida."
+  },
+  "errorRecurrenceInterval": {
+    "message": "Zoom permite un intervalo entre 1 y $1 para esta repetición."
+  },
+  "errorRecurrenceCount": {
+    "message": "Zoom permite entre 1 y $1 repeticiones."
+  },
+  "errorRecurrenceUntil": {
+    "message": "Elige la fecha final de la repetición."
+  },
+  "errorRecurrenceDays": {
+    "message": "Elige al menos un día de la semana."
+  },
+  "errorInvalidEmail": {
+    "message": "Dirección de correo no válida: $1"
+  },
+  "errorZoomNotConnected": {
+    "message": "Primero conecta tu cuenta de Zoom en Ajustes."
+  },
+  "errorCalendarNoIdentity": {
+    "message": "El calendario \"$1\" no tiene identidad de correo. Asígnala en sus propiedades (Calendario > Propiedades > Correo electrónico) para poder enviar invitaciones."
+  },
+  "inviteJoin": {
+    "message": "Unirse a la reunión de Zoom"
+  },
+  "inviteMeetingId": {
+    "message": "ID de reunión"
+  },
+  "invitePasscode": {
+    "message": "Código de acceso"
+  },
+  "notifyReplyTitle": {
+    "message": "Respuesta a reunión recibida"
+  },
+  "notifyReplyBody": {
+    "message": "$1: $2 respuesta(s) registrada(s)"
+  },
+  "notifySyncErrorTitle": {
+    "message": "No se pudo actualizar Zoom"
+  },
+  "optionsTitle": {
+    "message": "Ajustes de Reuniones Zoom"
+  },
+  "optionsStepsTitle": {
+    "message": "Crea tu app de Zoom (una sola vez)"
+  },
+  "optionsStep1": {
+    "message": "Abre marketplace.zoom.us > Develop > Build App y elige \"General App\" (gestionada por el usuario)."
+  },
+  "optionsStep2": {
+    "message": "En Basic Information activa \"Public client\" (PKCE) si está disponible."
+  },
+  "optionsStep3": {
+    "message": "Usa esta OAuth Redirect URL y añádela también a la OAuth allow list:"
+  },
+  "optionsStep4": {
+    "message": "En Scopes añade: user:read:user, meeting:read:meeting, meeting:write:meeting, meeting:update:meeting, meeting:delete:meeting."
+  },
+  "optionsStep5": {
+    "message": "Copia el Client ID aquí abajo y pulsa \"Conectar Zoom\"."
+  },
+  "optionsCredentials": {
+    "message": "Credenciales de la app"
+  },
+  "optionsSecretLabel": {
+    "message": "Client secret (opcional)"
+  },
+  "optionsSecretHelp": {
+    "message": "Déjalo vacío si la app es un cliente público PKCE. Solo hace falta si tu app de Zoom es confidencial; se guarda en local en este perfil de Thunderbird."
+  },
+  "optionsSaved": {
+    "message": "Ajustes guardados."
+  },
+  "optionsAccount": {
+    "message": "Cuenta de Zoom"
+  },
+  "optionsCalendars": {
+    "message": "Calendarios"
+  },
+  "optionsCalendarsHelp": {
+    "message": "Las invitaciones salen desde la identidad de correo del calendario. Para sincronizar entre dispositivos, crea las reuniones en un calendario compartido (CalDAV, Google o Microsoft 365)."
+  },
+  "saving": {
+    "message": "Guardando…"
+  }
+}

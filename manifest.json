@@ -1,0 +1,69 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "0.1.4",
+  "default_locale": "en",
+  "author": "Javier Abrego",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "zoom-meetings@revoluciontech.org",
+      "strict_min_version": "128.0"
+    }
+  },
+  "icons": {
+    "32": "icons/icon.svg",
+    "64": "icons/icon.svg"
+  },
+  "background": {
+    "page": "background.html"
+  },
+  "browser_action": {
+    "default_title": "__MSG_browserActionTitle__",
+    "default_label": "__MSG_browserActionLabel__",
+    "default_icon": "icons/icon.svg",
+    "allowed_spaces": [
+      "mail",
+      "calendar",
+      "tasks",
+      "default"
+    ]
+  },
+  "message_display_action": {
+    "default_title": "__MSG_messageActionTitle__",
+    "default_label": "__MSG_messageActionLabel__",
+    "default_icon": "icons/icon.svg"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "permissions": [
+    "webRequestBlocking",
+    "webRequest",
+    "storage",
+    "identity",
+    "messagesRead",
+    "addressBooks",
+    "accountsRead",
+    "notifications",
+    "https://zoom.us/*",
+    "https://api.zoom.us/*"
+  ],
+  "experiment_apis": {
+    "zoomCalendar": {
+      "schema": "api/zoomCalendar/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "zoomCalendar"
+          ]
+        ],
+        "script": "api/zoomCalendar/implementation.js"
+      }
+    }
+  }
+}

@@ -1,0 +1,401 @@
+{
+  "extensionName": {
+    "message": "Zoom Meetings for Thunderbird"
+  },
+  "extensionDescription": {
+    "message": "Organize Zoom meetings from the Thunderbird calendar with Outlook-compatible invitations and attendee tracking."
+  },
+  "browserActionTitle": {
+    "message": "Zoom meetings"
+  },
+  "browserActionLabel": {
+    "message": "Zoom"
+  },
+  "messageActionTitle": {
+    "message": "Manage the Zoom meeting of this email, or create one with its participants"
+  },
+  "messageActionLabel": {
+    "message": "Zoom meeting"
+  },
+  "managerTitle": {
+    "message": "Zoom meetings"
+  },
+  "actionNewMeeting": {
+    "message": "New meeting"
+  },
+  "actionAddZoomExisting": {
+    "message": "Add Zoom to an event"
+  },
+  "actionAddZoom": {
+    "message": "Add Zoom and send update"
+  },
+  "actionOpenCalendar": {
+    "message": "Open calendar"
+  },
+  "actionRefresh": {
+    "message": "Refresh"
+  },
+  "actionSettings": {
+    "message": "Settings"
+  },
+  "actionStart": {
+    "message": "Start as host"
+  },
+  "actionJoin": {
+    "message": "Join"
+  },
+  "actionCopyInvite": {
+    "message": "Copy invitation"
+  },
+  "actionCopy": {
+    "message": "Copy"
+  },
+  "actionEdit": {
+    "message": "Edit"
+  },
+  "actionCancelMeeting": {
+    "message": "Cancel meeting"
+  },
+  "actionConfirmCancel": {
+    "message": "Yes, cancel it"
+  },
+  "actionBack": {
+    "message": "Back"
+  },
+  "actionSave": {
+    "message": "Save"
+  },
+  "actionRemove": {
+    "message": "Remove"
+  },
+  "actionConnect": {
+    "message": "Connect Zoom"
+  },
+  "actionDisconnect": {
+    "message": "Disconnect"
+  },
+  "filterUpcoming": {
+    "message": "Upcoming"
+  },
+  "filterPast": {
+    "message": "Past"
+  },
+  "emptyList": {
+    "message": "No Zoom meetings here yet."
+  },
+  "selectMeeting": {
+    "message": "Select a meeting or create a new one."
+  },
+  "untitled": {
+    "message": "(untitled)"
+  },
+  "recurring": {
+    "message": "Recurring"
+  },
+  "zoomLink": {
+    "message": "Zoom link"
+  },
+  "attendees": {
+    "message": "Attendees"
+  },
+  "noAttendees": {
+    "message": "No attendees invited."
+  },
+  "attendeeCount": {
+    "message": "$1 attendee(s)"
+  },
+  "inCalendar": {
+    "message": "Calendar: $1"
+  },
+  "stateScheduled": {
+    "message": "Scheduled"
+  },
+  "statePast": {
+    "message": "Finished"
+  },
+  "statInvited": {
+    "message": "Invited"
+  },
+  "statAccepted": {
+    "message": "Accepted"
+  },
+  "statTentative": {
+    "message": "Tentative"
+  },
+  "statPending": {
+    "message": "Pending"
+  },
+  "statDeclined": {
+    "message": "Declined"
+  },
+  "partstat_ACCEPTED": {
+    "message": "Accepted"
+  },
+  "partstat_DECLINED": {
+    "message": "Declined"
+  },
+  "partstat_TENTATIVE": {
+    "message": "Tentative"
+  },
+  "partstat_NEEDS_ACTION": {
+    "message": "Pending"
+  },
+  "partstat_DELEGATED": {
+    "message": "Delegated"
+  },
+  "confirmCancel": {
+    "message": "The Zoom meeting will be deleted and the event removed from your calendar."
+  },
+  "notifyAttendees": {
+    "message": "Send cancellation to attendees"
+  },
+  "formNewTitle": {
+    "message": "New Zoom meeting"
+  },
+  "formEditTitle": {
+    "message": "Modify meeting"
+  },
+  "fieldTitle": {
+    "message": "Title"
+  },
+  "fieldDate": {
+    "message": "Date"
+  },
+  "fieldTime": {
+    "message": "Start time"
+  },
+  "fieldDuration": {
+    "message": "Duration"
+  },
+  "fieldTimezone": {
+    "message": "Time zone"
+  },
+  "fieldCalendar": {
+    "message": "Calendar"
+  },
+  "fieldAttendees": {
+    "message": "Attendees"
+  },
+  "attendeePlaceholder": {
+    "message": "Type a name or email from your address book"
+  },
+  "fieldRepeat": {
+    "message": "Repeat"
+  },
+  "repeatNone": {
+    "message": "Does not repeat"
+  },
+  "repeatDaily": {
+    "message": "Daily"
+  },
+  "repeatWeekly": {
+    "message": "Weekly"
+  },
+  "repeatMonthly": {
+    "message": "Monthly (same day)"
+  },
+  "repeatEvery": {
+    "message": "Every"
+  },
+  "repeatEndAfter": {
+    "message": "End after"
+  },
+  "repeatOccurrences": {
+    "message": "occurrences"
+  },
+  "repeatEndUntil": {
+    "message": "or until"
+  },
+  "unit_DAILY": {
+    "message": "day(s)"
+  },
+  "unit_WEEKLY": {
+    "message": "week(s)"
+  },
+  "unit_MONTHLY": {
+    "message": "month(s)"
+  },
+  "day_MO": {
+    "message": "Mon"
+  },
+  "day_TU": {
+    "message": "Tue"
+  },
+  "day_WE": {
+    "message": "Wed"
+  },
+  "day_TH": {
+    "message": "Thu"
+  },
+  "day_FR": {
+    "message": "Fri"
+  },
+  "day_SA": {
+    "message": "Sat"
+  },
+  "day_SU": {
+    "message": "Sun"
+  },
+  "recurrenceEvery": {
+    "message": "Every $1 $2"
+  },
+  "recurrenceCount": {
+    "message": "$1 times"
+  },
+  "recurrenceUntil": {
+    "message": "until $1"
+  },
+  "fieldNotes": {
+    "message": "Notes for attendees"
+  },
+  "fieldZoomOptions": {
+    "message": "Zoom options"
+  },
+  "optWaitingRoom": {
+    "message": "Waiting room"
+  },
+  "optJoinBeforeHost": {
+    "message": "Allow joining before the host"
+  },
+  "optMuteOnEntry": {
+    "message": "Mute participants on entry"
+  },
+  "sendInvitations": {
+    "message": "Send invitations to attendees now"
+  },
+  "sendUpdates": {
+    "message": "Send the update to attendees"
+  },
+  "existingTitle": {
+    "message": "Add Zoom to an existing event"
+  },
+  "existingHelp": {
+    "message": "Your events for the next 90 days that you organize and have no Zoom meeting yet."
+  },
+  "existingEmpty": {
+    "message": "No eligible events."
+  },
+  "loading": {
+    "message": "Loading…"
+  },
+  "copied": {
+    "message": "Copied to the clipboard."
+  },
+  "savedCreated": {
+    "message": "Meeting created."
+  },
+  "savedUpdated": {
+    "message": "Meeting updated."
+  },
+  "savedCancelled": {
+    "message": "Meeting cancelled."
+  },
+  "savedZoomAdded": {
+    "message": "Zoom added to the event."
+  },
+  "zoomConnectedAs": {
+    "message": "Zoom connected: $1"
+  },
+  "zoomNotConnected": {
+    "message": "Zoom not connected"
+  },
+  "calendarNoIdentity": {
+    "message": "no email identity, cannot send invitations"
+  },
+  "calendarReadOnly": {
+    "message": "read only"
+  },
+  "errorTitleRequired": {
+    "message": "The meeting needs a title."
+  },
+  "errorStartRequired": {
+    "message": "Choose a date and start time."
+  },
+  "errorDuration": {
+    "message": "Choose a valid duration."
+  },
+  "errorRecurrenceInterval": {
+    "message": "Zoom allows an interval between 1 and $1 for this repetition."
+  },
+  "errorRecurrenceCount": {
+    "message": "Zoom allows between 1 and $1 occurrences."
+  },
+  "errorRecurrenceUntil": {
+    "message": "Choose the end date of the repetition."
+  },
+  "errorRecurrenceDays": {
+    "message": "Choose at least one weekday."
+  },
+  "errorInvalidEmail": {
+    "message": "Invalid email address: $1"
+  },
+  "errorZoomNotConnected": {
+    "message": "Connect your Zoom account in Settings first."
+  },
+  "errorCalendarNoIdentity": {
+    "message": "The calendar \"$1\" has no email identity. Set one in its properties (Calendar > Properties > Email) to send invitations."
+  },
+  "inviteJoin": {
+    "message": "Join Zoom meeting"
+  },
+  "inviteMeetingId": {
+    "message": "Meeting ID"
+  },
+  "invitePasscode": {
+    "message": "Passcode"
+  },
+  "notifyReplyTitle": {
+    "message": "Meeting response received"
+  },
+  "notifyReplyBody": {
+    "message": "$1: $2 response(s) recorded"
+  },
+  "notifySyncErrorTitle": {
+    "message": "Could not update Zoom"
+  },
+  "optionsTitle": {
+    "message": "Zoom Meetings settings"
+  },
+  "optionsStepsTitle": {
+    "message": "Create your Zoom app (once)"
+  },
+  "optionsStep1": {
+    "message": "Open marketplace.zoom.us > Develop > Build App and choose \"General App\" (user-managed)."
+  },
+  "optionsStep2": {
+    "message": "In Basic Information enable \"Public client\" (PKCE) if available."
+  },
+  "optionsStep3": {
+    "message": "Use this OAuth Redirect URL and also add it to the OAuth allow list:"
+  },
+  "optionsStep4": {
+    "message": "In Scopes add: user:read:user, meeting:read:meeting, meeting:write:meeting, meeting:update:meeting, meeting:delete:meeting."
+  },
+  "optionsStep5": {
+    "message": "Copy the Client ID below and press \"Connect Zoom\"."
+  },
+  "optionsCredentials": {
+    "message": "App credentials"
+  },
+  "optionsSecretLabel": {
+    "message": "Client secret (optional)"
+  },
+  "optionsSecretHelp": {
+    "message": "Leave it empty with a public PKCE client. Only needed if your Zoom app is confidential; it is stored locally in this Thunderbird profile."
+  },
+  "optionsSaved": {
+    "message": "Settings saved."
+  },
+  "optionsAccount": {
+    "message": "Zoom account"
+  },
+  "optionsCalendars": {
+    "message": "Calendars"
+  },
+  "optionsCalendarsHelp": {
+    "message": "Invitations are sent from the email identity of the calendar. To sync between devices, create the meetings in a shared calendar (CalDAV, Google or Microsoft 365)."
+  },
+  "saving": {
+    "message": "Saving…"
+  }
+}

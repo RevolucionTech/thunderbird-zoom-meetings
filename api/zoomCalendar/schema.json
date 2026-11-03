@@ -1,0 +1,142 @@
+[
+  {
+    "namespace": "zoomCalendar",
+    "description": "Bridge to the native Thunderbird calendar and iTIP machinery.",
+    "types": [
+      {
+        "id": "AttendeeInput",
+        "type": "object",
+        "properties": {
+          "email": { "type": "string" },
+          "name": { "type": "string", "optional": true }
+        }
+      },
+      {
+        "id": "ZoomInfo",
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "joinUrl": { "type": "string" },
+          "password": { "type": "string", "optional": true }
+        }
+      },
+      {
+        "id": "EventInput",
+        "type": "object",
+        "properties": {
+          "title": { "type": "string", "optional": true },
+          "description": { "type": "string", "optional": true },
+          "location": { "type": "string", "optional": true },
+          "startLocal": { "type": "string", "optional": true, "description": "Wall clock time YYYY-MM-DDTHH:MM in tzid." },
+          "durationMin": { "type": "integer", "optional": true },
+          "tzid": { "type": "string", "optional": true },
+          "attendees": { "type": "array", "optional": true, "items": { "$ref": "AttendeeInput" } },
+          "rrule": { "type": "string", "optional": true, "description": "RRULE value without the RRULE: prefix. Empty string removes recurrence." },
+          "zoom": { "$ref": "ZoomInfo", "optional": true }
+        }
+      }
+    ],
+    "functions": [
+      {
+        "name": "listCalendars",
+        "type": "function",
+        "async": true,
+        "parameters": []
+      },
+      {
+        "name": "listEvents",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          {
+            "name": "filter",
+            "type": "object",
+            "properties": {
+              "zoomOnly": { "type": "boolean", "optional": true },
+              "calendarId": { "type": "string", "optional": true },
+              "rangeStartMs": { "type": "number", "optional": true },
+              "rangeEndMs": { "type": "number", "optional": true }
+            }
+          }
+        ]
+      },
+      {
+        "name": "getEvent",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          { "name": "calendarId", "type": "string" },
+          { "name": "uid", "type": "string" }
+        ]
+      },
+      {
+        "name": "findEventByUid",
+        "type": "function",
+        "async": true,
+        "parameters": [{ "name": "uid", "type": "string" }]
+      },
+      {
+        "name": "createEvent",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          { "name": "calendarId", "type": "string" },
+          { "name": "data", "$ref": "EventInput" },
+          { "name": "sendInvitations", "type": "boolean" }
+        ]
+      },
+      {
+        "name": "updateEvent",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          { "name": "calendarId", "type": "string" },
+          { "name": "uid", "type": "string" },
+          { "name": "data", "$ref": "EventInput" },
+          { "name": "sendUpdates", "type": "boolean" }
+        ]
+      },
+      {
+        "name": "cancelEvent",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          { "name": "calendarId", "type": "string" },
+          { "name": "uid", "type": "string" },
+          { "name": "notify", "type": "boolean" }
+        ]
+      },
+      {
+        "name": "applyItipReply",
+        "type": "function",
+        "async": true,
+        "description": "Applies the PARTSTAT values of an iTIP REPLY to the matching organizer event, without sending any mail.",
+        "parameters": [{ "name": "icsText", "type": "string" }]
+      },
+      {
+        "name": "parseIcs",
+        "type": "function",
+        "async": true,
+        "description": "Returns METHOD and UIDs found in an iCalendar text.",
+        "parameters": [{ "name": "icsText", "type": "string" }]
+      },
+      {
+        "name": "openCalendarTab",
+        "type": "function",
+        "async": true,
+        "parameters": []
+      }
+    ],
+    "events": [
+      {
+        "name": "onEventChanged",
+        "type": "function",
+        "description": "Fired when an event carrying Zoom metadata is added, modified or deleted in any calendar.",
+        "parameters": [
+          { "name": "event", "type": "any" },
+          { "name": "changeType", "type": "string" }
+        ]
+      }
+    ]
+  }
+]

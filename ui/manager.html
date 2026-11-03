@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title data-i18n="managerTitle"></title>
+    <link rel="stylesheet" href="manager.css" />
+    <script type="module" src="manager.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img src="../icons/icon.svg" alt="" width="28" height="28" />
+        <h1 data-i18n="managerTitle"></h1>
+      </div>
+      <div class="zoom-status" id="zoomStatus"></div>
+      <nav class="actions">
+        <button id="btnNew" class="primary" data-i18n="actionNewMeeting"></button>
+        <button id="btnExisting" data-i18n="actionAddZoomExisting"></button>
+        <button id="btnCalendar" data-i18n="actionOpenCalendar"></button>
+        <button id="btnRefresh" data-i18n="actionRefresh"></button>
+        <button id="btnSettings" data-i18n="actionSettings"></button>
+      </nav>
+    </header>
+
+    <div id="banner" class="banner" hidden></div>
+
+    <main class="layout">
+      <section class="list-pane">
+        <div class="segmented" role="tablist">
+          <button role="tab" data-filter="upcoming" class="active" data-i18n="filterUpcoming"></button>
+          <button role="tab" data-filter="past" data-i18n="filterPast"></button>
+        </div>
+        <ul id="meetingList" class="meeting-list"></ul>
+        <p id="emptyList" class="muted" data-i18n="emptyList" hidden></p>
+      </section>
+
+      <section class="detail-pane" id="detailPane">
+        <div class="placeholder muted" id="placeholder" data-i18n="selectMeeting"></div>
+
+        <!-- Meeting detail -->
+        <article id="detail" hidden>
+          <div class="detail-head">
+            <div>
+              <h2 id="dTitle"></h2>
+              <p id="dWhen" class="muted"></p>
+              <p id="dRecurrence" class="muted"></p>
+              <p id="dCalendar" class="muted small"></p>
+            </div>
+            <span id="dState" class="pill"></span>
+          </div>
+
+          <div class="zoom-box">
+            <div>
+              <div class="small muted" data-i18n="zoomLink"></div>
+              <a id="dJoinUrl" href="#" class="mono"></a>
+              <div class="small muted" id="dZoomMeta"></div>
+            </div>
+            <div class="row gap">
+              <button id="btnStart" class="primary" data-i18n="actionStart"></button>
+              <button id="btnJoin" data-i18n="actionJoin"></button>
+              <button id="btnCopy" data-i18n="actionCopyInvite"></button>
+            </div>
+          </div>
+
+          <div class="stats" id="dStats"></div>
+
+          <h3 data-i18n="attendees"></h3>
+          <ul id="dAttendees" class="attendees"></ul>
+
+          <div class="row gap end">
+            <button id="btnEdit" data-i18n="actionEdit"></button>
+            <button id="btnCancelMeeting" class="danger" data-i18n="actionCancelMeeting"></button>
+          </div>
+
+          <div id="cancelConfirm" class="confirm" hidden>
+            <p data-i18n="confirmCancel"></p>
+            <label class="check"><input type="checkbox" id="cancelNotify" checked /> <span data-i18n="notifyAttendees"></span></label>
+            <div class="row gap end">
+              <button id="btnCancelNo" data-i18n="actionBack"></button>
+              <button id="btnCancelYes" class="danger" data-i18n="actionConfirmCancel"></button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Create / edit form -->
+        <form id="form" hidden autocomplete="off" novalidate>
+          <h2 id="formTitle"></h2>
+          <label class="field">
+            <span data-i18n="fieldTitle"></span>
+            <input id="fTitle" />
+          </label>
+          <div class="grid3">
+            <label class="field">
+              <span data-i18n="fieldDate"></span>
+              <input id="fDate" type="date" />
+            </label>
+            <label class="field">
+              <span data-i18n="fieldTime"></span>
+              <input id="fTime" type="time" />
+            </label>
+            <label class="field">
+              <span data-i18n="fieldDuration"></span>
+              <select id="fDuration">
+                <option value="15">15 min</option>
+                <option value="30">30 min</option>
+                <option value="45">45 min</option>
+                <option value="60" selected>1 h</option>
+                <option value="90">1 h 30 min</option>
+                <option value="120">2 h</option>
+                <option value="180">3 h</option>
+              </select>
+            </label>
+          </div>
+          <div class="grid2">
+            <label class="field">
+              <span data-i18n="fieldTimezone"></span>
+              <select id="fTimezone"></select>
+            </label>
+            <label class="field">
+              <span data-i18n="fieldCalendar"></span>
+              <select id="fCalendar"></select>
+            </label>
+          </div>
+
+          <fieldset class="field">
+            <legend data-i18n="fieldAttendees"></legend>
+            <div class="chips" id="fChips"></div>
+            <div class="autocomplete">
+              <input id="fAttendeeInput" data-i18n-placeholder="attendeePlaceholder" />
+              <ul id="fSuggestions" class="suggestions" hidden></ul>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend data-i18n="fieldRepeat"></legend>
+            <div class="row gap wrap">
+              <select id="fFreq">
+                <option value="NONE" data-i18n="repeatNone"></option>
+                <option value="DAILY" data-i18n="repeatDaily"></option>
+                <option value="WEEKLY" data-i18n="repeatWeekly"></option>
+                <option value="MONTHLY" data-i18n="repeatMonthly"></option>
+              </select>
+              <span class="recur-only row gap">
+                <span data-i18n="repeatEvery"></span>
+                <input id="fInterval" type="number" min="1" max="15" value="1" class="narrow" />
+                <span id="fIntervalUnit"></span>
+              </span>
+            </div>
+            <div class="recur-only weekly-only row gap wrap" id="fWeekdays"></div>
+            <div class="recur-only row gap wrap">
+              <label class="check"><input type="radio" name="fEnd" value="COUNT" checked /> <span data-i18n="repeatEndAfter"></span></label>
+              <input id="fCount" type="number" min="1" max="60" value="10" class="narrow" />
+              <span data-i18n="repeatOccurrences"></span>
+              <label class="check"><input type="radio" name="fEnd" value="UNTIL" /> <span data-i18n="repeatEndUntil"></span></label>
+              <input id="fUntil" type="date" />
+            </div>
+          </fieldset>
+
+          <label class="field">
+            <span data-i18n="fieldNotes"></span>
+            <textarea id="fNotes" rows="4"></textarea>
+          </label>
+
+          <fieldset class="field" id="fZoomSettings">
+            <legend data-i18n="fieldZoomOptions"></legend>
+            <label class="check"><input type="checkbox" id="fWaitingRoom" checked /> <span data-i18n="optWaitingRoom"></span></label>
+            <label class="check"><input type="checkbox" id="fJoinBeforeHost" /> <span data-i18n="optJoinBeforeHost"></span></label>
+            <label class="check"><input type="checkbox" id="fMute" checked /> <span data-i18n="optMuteOnEntry"></span></label>
+          </fieldset>
+
+          <label class="check"><input type="checkbox" id="fSend" checked /> <span id="fSendLabel"></span></label>
+
+          <p id="formError" class="error" hidden></p>
+          <div class="row gap end">
+            <button type="button" id="btnFormCancel" data-i18n="actionBack"></button>
+            <button type="submit" id="btnFormSave" class="primary" data-i18n="actionSave"></button>
+          </div>
+        </form>
+
+        <!-- Existing events -->
+        <section id="existing" hidden>
+          <h2 data-i18n="existingTitle"></h2>
+          <p class="muted" data-i18n="existingHelp"></p>
+          <ul id="existingList" class="meeting-list"></ul>
+          <p id="existingEmpty" class="muted" data-i18n="existingEmpty" hidden></p>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
