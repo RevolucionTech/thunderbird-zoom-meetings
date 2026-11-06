@@ -30,8 +30,10 @@ other calendar client. Attendees do not need the extension or a Zoom account.
 - Add a Zoom meeting to an existing calendar event.
 - From any email: open the meeting it refers to, or start a new meeting with the
   people in that thread.
-- Sync across devices by creating meetings in a shared calendar (CalDAV,
-  Google, Microsoft 365).
+- See every meeting of your Zoom account on every computer, wherever it was
+  created, and add the ones you are missing to a calendar with one click.
+- Sync events and attendees across devices by creating meetings in a shared
+  calendar (CalDAV, Google, Microsoft 365).
 - English and Spanish UI.
 
 ## Install
@@ -72,6 +74,7 @@ api/zoomCalendar/      Experiment API (privileged): native calendar + iTIP
                        iTIP REPLY parsing, calendar observer
 lib/zoom.js            OAuth 2.0 + PKCE (browser.identity), Zoom REST client
 lib/recurrence.js      Recurrence model <-> RRULE <-> Zoom recurrence
+lib/zoomEvents.js      Zoom meetings -> event model, merge with the calendar
 lib/meetings.js        Orchestration: Zoom + calendar + mail integration
 background.js          Toolbar buttons, new-mail reply processing,
                        calendar-to-Zoom sync, Origin header stripping
@@ -100,6 +103,14 @@ No dependencies or bundler: the source tree is the add-on.
 
 ## Known limitations
 
+- Attendees and their replies live in the calendar, not in Zoom. A meeting added
+  from Zoom on another computer has no attendees there, so editing or cancelling
+  it from that computer does not notify anyone. Use a shared calendar if you need
+  that.
+- Changes made to a meeting in Zoom do not update a calendar event that already
+  exists.
+- Recurring meetings without a fixed time are listed but cannot be added to a
+  calendar.
 - Recurring meetings are edited as a whole series. Changing or cancelling a
   single occurrence is not supported yet.
 - Zoom limits recurring meetings to 60 occurrences and to intervals of up to 15

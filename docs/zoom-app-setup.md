@@ -49,7 +49,8 @@ Open **Scopes** > **Add Scopes** and add:
 | `meeting:write:meeting` | Create meetings |
 | `meeting:update:meeting` | Change date, time, title or recurrence |
 | `meeting:delete:meeting` | Cancel meetings |
-| `meeting:read:meeting` | Get the host start link ("Start as host") |
+| `meeting:read:meeting` | Get the host start link ("Start as host") and meeting details |
+| `meeting:read:list_meetings` | List every meeting of your account, on any computer |
 | `user:read:user` | Optional. Shows which Zoom user is connected |
 
 The extension checks the granted scopes when you connect and tells you which

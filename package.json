@@ -4,7 +4,7 @@
   "description": "Thunderbird extension to organize Zoom meetings with Outlook-compatible invitations",
   "type": "module",
   "scripts": {
-    "test": "node test/recurrence.test.mjs",
+    "test": "node test/recurrence.test.mjs && node test/zoomEvents.test.mjs",
     "build": "./scripts/build.sh"
   },
   "license": "MPL-2.0"

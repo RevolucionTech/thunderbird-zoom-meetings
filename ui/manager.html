@@ -62,14 +62,25 @@
             </div>
           </div>
 
-          <div class="stats" id="dStats"></div>
+          <div id="dAddCalendar" class="add-calendar" hidden>
+            <p data-i18n="zoomOnlyHelp"></p>
+            <div class="row gap">
+              <select id="dCalendarSelect"></select>
+              <button id="btnAddToCalendar" class="primary nowrap" data-i18n="actionAddToCalendar"></button>
+            </div>
+          </div>
+          <p id="dNoFixedTime" class="muted" data-i18n="noFixedTimeHelp" hidden></p>
 
-          <h3 data-i18n="attendees"></h3>
-          <ul id="dAttendees" class="attendees"></ul>
+          <div id="dCalendarOnly">
+            <div class="stats" id="dStats"></div>
 
-          <div class="row gap end">
-            <button id="btnEdit" data-i18n="actionEdit"></button>
-            <button id="btnCancelMeeting" class="danger" data-i18n="actionCancelMeeting"></button>
+            <h3 data-i18n="attendees"></h3>
+            <ul id="dAttendees" class="attendees"></ul>
+
+            <div class="row gap end">
+              <button id="btnEdit" data-i18n="actionEdit"></button>
+              <button id="btnCancelMeeting" class="danger" data-i18n="actionCancelMeeting"></button>
+            </div>
           </div>
 
           <div id="cancelConfirm" class="confirm" hidden>

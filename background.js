@@ -115,6 +115,12 @@ async function handleCalendarChange(event, changeType) {
   if (changeType === "deleted") {
     return;
   }
+  // A new event mirrors its Zoom meeting (created here, added from Zoom or synced
+  // from another device), so there is nothing to push.
+  if (changeType === "added") {
+    await meetings.saveFingerprint(event);
+    return;
+  }
   try {
     const status = await zoom.status();
     if (!status.connected) {

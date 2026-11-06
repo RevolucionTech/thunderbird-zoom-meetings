@@ -397,5 +397,26 @@
   },
   "saving": {
     "message": "Guardando…"
+  },
+  "notInCalendar": {
+    "message": "No está en el calendario"
+  },
+  "zoomOnlyHelp": {
+    "message": "Esta reunión existe en tu cuenta de Zoom, pero no en ningún calendario de este equipo. Al añadirla no se envía nada a nadie."
+  },
+  "actionAddToCalendar": {
+    "message": "Añadir al calendario"
+  },
+  "savedAddedToCalendar": {
+    "message": "Reunión añadida al calendario."
+  },
+  "noFixedTime": {
+    "message": "Sin hora fija"
+  },
+  "noFixedTimeHelp": {
+    "message": "Esta reunión periódica no tiene hora fija, así que no se puede añadir a un calendario."
+  },
+  "errorZoomListScope": {
+    "message": "No se pueden listar tus reuniones de Zoom: añade el scope meeting:read:list_meetings a tu app de Zoom y después desconecta y vuelve a conectar en Ajustes."
   }
 }

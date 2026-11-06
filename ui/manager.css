@@ -183,6 +183,9 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); ou
   border-bottom: 1px solid var(--border);
 }
 
+.add-calendar { display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius); }
+.nowrap { white-space: nowrap; }
+
 .confirm { margin-top: 12px; padding: 12px; border: 1px solid var(--bad); border-radius: var(--radius); background: var(--bad-bg); }
 
 form { display: grid; gap: 12px; }

@@ -397,5 +397,26 @@
   },
   "saving": {
     "message": "Saving…"
+  },
+  "notInCalendar": {
+    "message": "Not in calendar"
+  },
+  "zoomOnlyHelp": {
+    "message": "This meeting exists in your Zoom account but not in a calendar on this computer. Adding it sends nothing to anyone."
+  },
+  "actionAddToCalendar": {
+    "message": "Add to calendar"
+  },
+  "savedAddedToCalendar": {
+    "message": "Meeting added to the calendar."
+  },
+  "noFixedTime": {
+    "message": "No fixed time"
+  },
+  "noFixedTimeHelp": {
+    "message": "This recurring meeting has no fixed time, so it cannot be added to a calendar."
+  },
+  "errorZoomListScope": {
+    "message": "Cannot list your Zoom meetings: add the meeting:read:list_meetings scope to your Zoom app, then disconnect and connect again in Settings."
   }
 }

@@ -2,14 +2,17 @@
 import * as meetings from "../lib/meetings.js";
 import * as zoom from "../lib/zoom.js";
 import { defaultModel, WEEKDAYS, ZOOM_LIMITS } from "../lib/recurrence.js";
+import { mergeMeetings } from "../lib/zoomEvents.js";
 
 const t = (key, subs) => browser.i18n.getMessage(key.replace(/-/g, "_"), subs) || key;
 const $ = id => document.getElementById(id);
 const locale = browser.i18n.getUILanguage();
+const MISSING_SCOPE_CODE = 4711;
 
 const state = {
   filter: "upcoming",
   events: [],
+  zoomMeetings: [],
   calendars: [],
   selected: null,
   editing: null,
@@ -64,6 +67,7 @@ async function guarded(button, fn) {
 }
 
 function formatWhen(event, ms = event.nextOccurrenceMs || event.startMs) {
+  if (ms === null) return t("noFixedTime");
   const tz = event.tzid || undefined;
   const fmt = new Intl.DateTimeFormat(locale, { dateStyle: "full", timeStyle: "short", timeZone: tz });
   const end = new Intl.DateTimeFormat(locale, { timeStyle: "short", timeZone: tz });
@@ -83,6 +87,8 @@ function describeRecurrence(event) {
 }
 
 function isPast(event) {
+  // The Zoom list does not tell when a series ends; it only returns unexpired meetings.
+  if (event.zoomRecurring) return false;
   const reference = event.nextOccurrenceMs || event.endMs;
   return !event.nextOccurrenceMs && reference < Date.now();
 }
@@ -117,16 +123,33 @@ async function loadEvents() {
   renderList();
 }
 
+async function loadZoomMeetings() {
+  if (!state.zoomConnected) {
+    state.zoomMeetings = [];
+    return;
+  }
+  try {
+    state.zoomMeetings = await meetings.listZoomMeetings();
+  } catch (e) {
+    console.error(e);
+    showBanner(e.code === MISSING_SCOPE_CODE ? t("errorZoomListScope") : e.message || String(e));
+  }
+}
+
+function allMeetings() {
+  return mergeMeetings(state.events, state.zoomMeetings);
+}
+
+function sortKey(event) {
+  return event.nextOccurrenceMs || event.startMs || Number.MAX_SAFE_INTEGER;
+}
+
 function renderList() {
   const list = $("meetingList");
   list.replaceChildren();
-  const events = state.events
+  const events = allMeetings()
     .filter(e => (state.filter === "past" ? isPast(e) : !isPast(e)))
-    .sort((a, b) => {
-      const ka = a.nextOccurrenceMs || a.startMs;
-      const kb = b.nextOccurrenceMs || b.startMs;
-      return state.filter === "past" ? kb - ka : ka - kb;
-    });
+    .sort((a, b) => (state.filter === "past" ? sortKey(b) - sortKey(a) : sortKey(a) - sortKey(b)));
   $("emptyList").hidden = events.length > 0;
   for (const event of events) {
     const s = meetings.stats(event);
@@ -141,7 +164,8 @@ function renderList() {
       el(
         "div",
         { class: "mi-badges" },
-        event.rrule ? el("span", { class: "pill", text: t("recurring") }) : null,
+        event.zoomOnly ? el("span", { class: "pill maybe", text: t("notInCalendar") }) : null,
+        event.rrule || event.zoomRecurring ? el("span", { class: "pill", text: t("recurring") }) : null,
         s.total ? el("span", { class: "pill ok", text: `✓ ${s.accepted}` }) : null,
         s.total ? el("span", { class: "pill pending", text: `? ${s.pending + s.tentative}` }) : null,
         s.total ? el("span", { class: "pill bad", text: `✗ ${s.declined}` }) : null
@@ -160,7 +184,9 @@ function showPane(name) {
 }
 
 async function selectEvent(event) {
-  const fresh = (await messenger.zoomCalendar.getEvent(event.calendarId, event.uid)) || event;
+  const fresh = event.zoomOnly
+    ? await meetings.zoomMeetingDetail(event).catch(e => (console.error(e), event))
+    : (await messenger.zoomCalendar.getEvent(event.calendarId, event.uid)) || event;
   state.selected = fresh;
   renderList();
   renderDetail(fresh);
@@ -172,7 +198,12 @@ function renderDetail(event) {
   $("dTitle").textContent = event.title || t("untitled");
   $("dWhen").textContent = formatWhen(event);
   $("dRecurrence").textContent = describeRecurrence(event);
-  $("dCalendar").textContent = t("inCalendar", [event.calendarName || ""]);
+  $("dCalendar").textContent = event.zoomOnly ? t("notInCalendar") : t("inCalendar", [event.calendarName || ""]);
+  const noFixedTime = event.startMs === null;
+  $("dCalendarOnly").hidden = !!event.zoomOnly;
+  $("dAddCalendar").hidden = !event.zoomOnly || noFixedTime;
+  $("dNoFixedTime").hidden = !event.zoomOnly || !noFixedTime;
+  if (event.zoomOnly) fillCalendars(null, $("dCalendarSelect"));
   $("dState").textContent = isPast(event) ? t("statePast") : t("stateScheduled");
   $("dState").className = `pill ${isPast(event) ? "" : "ok"}`;
   $("dJoinUrl").textContent = event.zoomJoinUrl || "";
@@ -231,8 +262,7 @@ function fillTimezones(selected) {
   select.value = selected;
 }
 
-function fillCalendars(selectedId) {
-  const select = $("fCalendar");
+function fillCalendars(selectedId, select = $("fCalendar")) {
   select.replaceChildren();
   const usable = state.calendars.filter(c => !c.disabled && !c.readOnly);
   for (const c of usable) {
@@ -467,6 +497,7 @@ function readForm() {
       endType: document.querySelector("input[name=fEnd]:checked").value,
       count: Number($("fCount").value),
       until: $("fUntil").value,
+      nth: state.editing ? meetings.formFromEvent(state.editing).recurrence.nth : undefined,
     },
     settings: {
       waitingRoom: $("fWaitingRoom").checked,
@@ -605,12 +636,22 @@ async function init() {
       showBanner(t("copied"), "ok");
     })
   );
+  $("btnAddToCalendar").addEventListener("click", () =>
+    guarded($("btnAddToCalendar"), async () => {
+      const saved = await meetings.addZoomMeetingToCalendar(state.selected.zoomId, $("dCalendarSelect").value);
+      showBanner(t("savedAddedToCalendar"), "ok");
+      await loadEvents();
+      await selectEvent(saved);
+    })
+  );
   $("btnEdit").addEventListener("click", () => openForm(state.selected));
   $("btnCancelMeeting").addEventListener("click", () => ($("cancelConfirm").hidden = false));
   $("btnCancelNo").addEventListener("click", () => ($("cancelConfirm").hidden = true));
   $("btnCancelYes").addEventListener("click", () =>
     guarded($("btnCancelYes"), async () => {
-      await meetings.cancelMeeting(state.selected, $("cancelNotify").checked);
+      const cancelled = state.selected;
+      await meetings.cancelMeeting(cancelled, $("cancelNotify").checked);
+      state.zoomMeetings = state.zoomMeetings.filter(m => m.zoomId !== cancelled.zoomId);
       showBanner(t("savedCancelled"), "ok");
       state.selected = null;
       showPane("placeholder");
@@ -620,10 +661,13 @@ async function init() {
 
   messenger.zoomCalendar.onEventChanged.addListener(() => {
     clearTimeout(init.reloadTimer);
-    init.reloadTimer = setTimeout(refresh, 500);
+    init.reloadTimer = setTimeout(() => refresh({ fromZoom: false }), 500);
   });
-  browser.storage.onChanged.addListener(changes => {
-    if (changes.zoomAuth) renderZoomStatus();
+  browser.storage.onChanged.addListener(async changes => {
+    if (!changes.zoomAuth) return;
+    const wasConnected = state.zoomConnected;
+    await renderZoomStatus();
+    if (wasConnected !== state.zoomConnected) await refresh();
   });
   window.addEventListener("hashchange", handleHash);
 
@@ -631,11 +675,15 @@ async function init() {
   await handleHash();
 }
 
-async function refresh() {
+async function refresh({ fromZoom = true } = {}) {
   await renderZoomStatus();
+  if (fromZoom) await loadZoomMeetings();
   await loadEvents();
   if (state.selected && !$("detail").hidden) {
-    const fresh = await messenger.zoomCalendar.getEvent(state.selected.calendarId, state.selected.uid);
+    const { zoomOnly, uid, calendarId } = state.selected;
+    const fresh = zoomOnly
+      ? allMeetings().some(e => e.uid === uid) && state.selected
+      : await messenger.zoomCalendar.getEvent(calendarId, uid);
     if (fresh) {
       state.selected = fresh;
       renderDetail(fresh);
