@@ -8,6 +8,8 @@ other calendar client. Attendees do not need the extension or a Zoom account.
 
 > Status: **beta**. Tested end to end on Thunderbird 157 (release): Zoom connection,
 > meeting creation, invitations, replies, updates, recurrence and cancellation.
+> Version 0.2.0 was also tested across two computers sharing a Zoom account on
+> Thunderbird 159: listing every meeting and adding it to the calendar.
 > Interoperability with every Outlook flavor (classic, new, web) should still be
 > checked in your own environment.
 
