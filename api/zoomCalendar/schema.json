@@ -121,6 +121,16 @@
         "parameters": [{ "name": "icsText", "type": "string" }]
       },
       {
+        "name": "getInvitationIcs",
+        "type": "function",
+        "async": true,
+        "description": "Serializes an event as an iCalendar invitation (METHOD:REQUEST, or PUBLISH without organizer).",
+        "parameters": [
+          { "name": "calendarId", "type": "string" },
+          { "name": "uid", "type": "string" }
+        ]
+      },
+      {
         "name": "openCalendarTab",
         "type": "function",
         "async": true,

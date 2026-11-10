@@ -418,5 +418,14 @@
   },
   "errorZoomListScope": {
     "message": "Cannot list your Zoom meetings: add the meeting:read:list_meetings scope to your Zoom app, then disconnect and connect again in Settings."
+  },
+  "actionResendInvite": {
+    "message": "Resend invitation with text"
+  },
+  "inviteResendSubject": {
+    "message": "Invitation: $1"
+  },
+  "inviteesFromZoom": {
+    "message": "Invitees: $1. They are added without sending them anything."
   }
 }

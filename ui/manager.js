@@ -204,6 +204,10 @@ function renderDetail(event) {
   $("dAddCalendar").hidden = !event.zoomOnly || noFixedTime;
   $("dNoFixedTime").hidden = !event.zoomOnly || !noFixedTime;
   if (event.zoomOnly) fillCalendars(null, $("dCalendarSelect"));
+  $("dInvitees").hidden = !event.zoomOnly || !event.invitees?.length;
+  $("dInvitees").textContent = event.invitees?.length
+    ? t("inviteesFromZoom", [event.invitees.map(a => a.name || a.email).join(", ")])
+    : "";
   $("dState").textContent = isPast(event) ? t("statePast") : t("stateScheduled");
   $("dState").className = `pill ${isPast(event) ? "" : "ok"}`;
   $("dJoinUrl").textContent = event.zoomJoinUrl || "";
@@ -643,6 +647,9 @@ async function init() {
       await loadEvents();
       await selectEvent(saved);
     })
+  );
+  $("btnResend").addEventListener("click", () =>
+    guarded($("btnResend"), () => meetings.composeInvitation(state.selected, inviteText(state.selected)))
   );
   $("btnEdit").addEventListener("click", () => openForm(state.selected));
   $("btnCancelMeeting").addEventListener("click", () => ($("cancelConfirm").hidden = false));

@@ -10,6 +10,8 @@ other calendar client. Attendees do not need the extension or a Zoom account.
 > meeting creation, invitations, replies, updates, recurrence and cancellation.
 > Version 0.2.0 was also tested across two computers sharing a Zoom account on
 > Thunderbird 159: listing every meeting and adding it to the calendar.
+> Version 0.3.0 was tested the same way: invitees restored from Zoom and the
+> resend invitation message with `.ics` and `.vcs` attachments.
 > Interoperability with every Outlook flavor (classic, new, web) should still be
 > checked in your own environment.
 
@@ -28,6 +30,9 @@ other calendar client. Attendees do not need the extension or a Zoom account.
 - Recurring meetings (daily, weekly, monthly) mapped to both `RRULE` and Zoom
   recurrence.
 - Cancel a meeting: deletes it in Zoom and notifies every attendee.
+- Resend the invitation with your own text: opens a new message to every
+  attendee with the invitation attached as `.ics` (iCalendar) and `.vcs`
+  (vCalendar 1.0, for older clients). You write the text and send it.
 - Start as host or join Zoom directly from Thunderbird.
 - Add a Zoom meeting to an existing calendar event.
 - From any email: open the meeting it refers to, or start a new meeting with the
@@ -77,6 +82,7 @@ api/zoomCalendar/      Experiment API (privileged): native calendar + iTIP
 lib/zoom.js            OAuth 2.0 + PKCE (browser.identity), Zoom REST client
 lib/recurrence.js      Recurrence model <-> RRULE <-> Zoom recurrence
 lib/zoomEvents.js      Zoom meetings -> event model, merge with the calendar
+lib/invitation.js      .ics clean-up and .vcs (vCalendar 1.0) generation
 lib/meetings.js        Orchestration: Zoom + calendar + mail integration
 background.js          Toolbar buttons, new-mail reply processing,
                        calendar-to-Zoom sync, Origin header stripping
@@ -105,10 +111,11 @@ No dependencies or bundler: the source tree is the add-on.
 
 ## Known limitations
 
-- Attendees and their replies live in the calendar, not in Zoom. A meeting added
-  from Zoom on another computer has no attendees there, so editing or cancelling
-  it from that computer does not notify anyone. Use a shared calendar if you need
-  that.
+- Zoom has no readable invitee list, so the extension keeps the invitees at the
+  end of the Zoom meeting agenda (`--- Invitees ---`, visible in Zoom). "Add to
+  calendar" on another computer restores them, but not their replies, and only
+  for meetings created or edited with version 0.3.0 or later. Use a shared
+  calendar if you need replies on every computer.
 - Changes made to a meeting in Zoom do not update a calendar event that already
   exists.
 - Recurring meetings without a fixed time are listed but cannot be added to a

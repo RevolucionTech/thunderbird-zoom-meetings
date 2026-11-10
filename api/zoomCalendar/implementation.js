@@ -431,6 +431,21 @@ this.zoomCalendar = class extends ExtensionCommon.ExtensionAPI {
           return result;
         },
 
+        async getInvitationIcs(calendarId, uid) {
+          const item = await getCalendar(calendarId).getItem(uid);
+          if (!item) {
+            throw new ExtensionError(`Event not found: ${uid}`);
+          }
+          // Without an organizer there is nobody to answer to: publish instead of request.
+          const method = item.organizer && item.getAttendees().length ? "REQUEST" : "PUBLISH";
+          const serializer = Cc["@mozilla.org/calendar/ics-serializer;1"].createInstance(Ci.calIIcsSerializer);
+          serializer.addItems([item]);
+          const methodProp = cal.icsService.createIcalProperty("METHOD");
+          methodProp.value = method;
+          serializer.addProperty(methodProp);
+          return { ics: serializer.serializeToString(), method };
+        },
+
         async openCalendarTab() {
           const win = Services.wm.getMostRecentWindow("mail:3pane");
           if (win && win.tabmail) {

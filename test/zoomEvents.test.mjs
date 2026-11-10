@@ -100,3 +100,36 @@ assert.equal(
 );
 
 console.log("zoom events tests passed");
+
+// Invitees travel in the Zoom agenda.
+{
+  const { composeAgenda, splitAgenda } = await import("../lib/zoomEvents.js");
+  const people = [
+    { email: "ana@example.com", name: "Ana Pérez" },
+    { email: "bob@example.com", name: "" },
+    { email: "eve@example.com", name: "Eve <x>" },
+  ];
+  const agenda = composeAgenda("Notes\nline 2", people);
+  assert.equal(agenda, "Notes\nline 2\n\n--- Invitees ---\nAna Pérez <ana@example.com>\nbob@example.com\nEve x <eve@example.com>");
+  assert.deepEqual(splitAgenda(agenda), {
+    notes: "Notes\nline 2",
+    invitees: [
+      { email: "ana@example.com", name: "Ana Pérez" },
+      { email: "bob@example.com", name: "" },
+      { email: "eve@example.com", name: "Eve x" },
+    ],
+  });
+  assert.equal(composeAgenda("  Just notes ", []), "Just notes");
+  assert.deepEqual(splitAgenda("Old agenda"), { notes: "Old agenda", invitees: [] });
+  assert.deepEqual(splitAgenda(null), { notes: "", invitees: [] });
+  assert.equal(splitAgenda(composeAgenda("", people)).notes, "");
+  // Zoom may return CRLF; emails are case-insensitive and deduplicated.
+  assert.deepEqual(splitAgenda("--- Invitees ---\r\nA@X.com\r\na@x.com\r\nnot an email").invitees, [{ email: "a@x.com", name: "" }]);
+  // The 2000 character limit cuts notes first and never splits an invitee.
+  const many = Array.from({ length: 120 }, (_, i) => ({ email: `person${i}@example.com`, name: "" }));
+  const full = composeAgenda("n".repeat(3000), many);
+  assert.ok(full.length <= 2000);
+  assert.ok(splitAgenda(full).invitees.every(a => /^person\d+@example\.com$/.test(a.email)));
+  assert.ok(splitAgenda(composeAgenda("n".repeat(3000), people)).invitees.length === 3);
+  console.log("agenda invitees tests passed");
+}
